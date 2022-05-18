@@ -18,14 +18,8 @@ const Login = () => {
       <View>
         <Text style={styles.heading}>Hello!</Text>
         <Text style={styles.heading}>Login Now</Text>
-        <View style={styles.subContainer}>
-          <Text style={styles.text}>Not a member ? </Text>
-          <TouchableOpacity>
-            <Text style={styles.signUpBtn}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
         <TextInput
-          style={styles.textInput}
+          style={{top: 5, ...styles.textInput}}
           label="Email"
           mode="outlined"
           theme={{roundness: 20}}
@@ -42,6 +36,12 @@ const Login = () => {
         <TouchableOpacity style={styles.loginBtn}>
           <Text style={{color: 'white', fontWeight: 'bold'}}>Login</Text>
         </TouchableOpacity>
+        <View style={styles.subContainer}>
+          <Text style={styles.text}>Not a member ? </Text>
+          <TouchableOpacity>
+            <Text style={styles.signUpBtn}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -82,13 +82,13 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   subContainer: {
-    top: 20,
-    left: 20,
+    top: 10,
     marginBottom: 15,
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   textInput: {
-    marginTop: 15,
+    marginTop: 18,
     borderRadius: 40,
     marginLeft: 20,
     marginRight: 20,
