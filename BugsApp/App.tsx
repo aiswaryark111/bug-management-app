@@ -9,10 +9,10 @@
  */
 
 import React from 'react';
-import Navigation from './src/routes/navigation-bottom-tab';
+import Router from './src/routes/router';
 
 const App = () => {
-  return <Navigation />;
+  return <Router />;
 };
 
 export default App;
