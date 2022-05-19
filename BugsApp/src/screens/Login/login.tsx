@@ -1,5 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {COLORS} from '../../themes/colors';
@@ -11,19 +17,21 @@ const Login = () => {
         <MaterialCommunityIcons
           name="bullseye-arrow"
           size={100}
-          color={COLORS.primary}
+          color={COLORS.white}
           style={styles.icon}
         />
       </View>
-      <View>
-        <Text style={styles.heading}>Hello!</Text>
-        <Text style={styles.heading}>Login Now</Text>
+      <ScrollView style={styles.loginContainer}>
+        <View style={styles.loginHeaderContainer}>
+          <Text style={styles.heading}>Hello!</Text>
+          <Text style={styles.heading}>Login Now</Text>
+        </View>
         <TextInput
-          style={{top: 5, ...styles.textInput}}
+          style={styles.textInput}
           label="Email"
           mode="outlined"
           theme={{roundness: 20}}
-          activeOutlineColor={COLORS.tabColor}
+          activeOutlineColor={COLORS.primary}
         />
         <TextInput
           style={styles.textInput}
@@ -31,10 +39,10 @@ const Login = () => {
           mode="outlined"
           secureTextEntry={true}
           theme={{roundness: 20}}
-          activeOutlineColor={COLORS.tabColor}
+          activeOutlineColor={COLORS.primary}
         />
         <TouchableOpacity style={styles.loginBtn}>
-          <Text style={{color: 'white', fontWeight: 'bold'}}>Login</Text>
+          <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
         <View style={styles.subContainer}>
           <Text style={styles.text}>Not a member ? </Text>
@@ -42,7 +50,7 @@ const Login = () => {
             <Text style={styles.signUpBtn}>Sign Up</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -54,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    backgroundColor: COLORS.tabColor,
+    backgroundColor: COLORS.primary,
     borderBottomLeftRadius: 100,
     height: '40%',
     alignItems: 'center',
@@ -66,20 +74,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   heading: {
-    top: 10,
-    left: 20,
     fontFamily: 'Arial',
     fontSize: 30,
     fontWeight: 'bold',
-    color: COLORS.tabColor,
+    color: COLORS.primary,
   },
   text: {
-    color: COLORS.tabColor,
+    color: COLORS.primary,
     fontSize: 16,
   },
   signUpBtn: {
     fontSize: 16,
-    color: 'red',
+    color: COLORS.black,
   },
   subContainer: {
     top: 10,
@@ -88,21 +94,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textInput: {
-    marginTop: 18,
-    borderRadius: 40,
-    marginLeft: 20,
-    marginRight: 20,
+    marginBottom: 20,
   },
   loginBtn: {
     alignContent: 'center',
-    marginTop: 18,
-    width: '90%',
-    borderRadius: 25,
-    height: 50,
-    marginLeft: 20,
+    borderRadius: 20,
+    paddingVertical: 15,
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F9802D',
+    backgroundColor: COLORS.primary,
+  },
+  loginContainer: {
+    marginHorizontal: 20,
+  },
+  loginHeaderContainer: {
+    marginVertical: 10,
+  },
+  loginText: {
+    color: COLORS.white,
+    fontWeight: 'bold',
   },
 });
