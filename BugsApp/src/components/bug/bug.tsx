@@ -1,58 +1,65 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {COLORS} from '../../themes/colors';
 const Bug = (props: any) => {
-  const {value, bug} = props;
+  const {index, bug} = props;
+  const [value, setValue] = useState(false);
+
+  const checkOdd = () => {
+    if (index % 2 === 0) {
+      setValue(false);
+    } else {
+      setValue(true);
+    }
+  };
+
+  useEffect(() => {
+    checkOdd();
+  }, [index]);
+
   return (
     <View
       style={{
         ...styles.container,
-        backgroundColor: value ? COLORS.primary : '',
+        backgroundColor: value ? COLORS.color1 : COLORS.color2,
       }}>
-      <View style={{flexDirection: 'row'}}>
+      <View style={styles.titleContainer}>
         <MaterialCommunityIcons name="bug" size={30} color={COLORS.black} />
         <Text style={styles.title}>{bug.bugId}</Text>
       </View>
       <View style={styles.section}>
-        <View>
+        <View style={styles.descriptionContainer}>
           <Text style={styles.subTitle}>Description </Text>
           <Text style={styles.description}>{bug.description}</Text>
         </View>
-        {bug.isActive ? (
-          <TouchableOpacity
+
+        <TouchableOpacity
+          style={{
+            ...styles.button,
+            backgroundColor: bug.isActive ? COLORS.primary : COLORS.white,
+            opacity: bug.isActive ? 1 : 0.5,
+          }}
+          disabled={!bug.isActive}>
+          <Text
             style={{
-              ...styles.button,
-              backgroundColor: value ? COLORS.white : COLORS.primary,
+              ...styles.textFont,
+              color: bug.isActive ? COLORS.white : COLORS.black,
             }}>
-            <Text
-              style={{
-                color: value ? COLORS.primary : COLORS.white,
-                fontWeight: 'bold',
-              }}>
-              Resolve
-            </Text>
-          </TouchableOpacity>
-        ) : (
-          <View
-            style={{
-              backgroundColor: value ? COLORS.white : COLORS.primary,
-              ...styles.badge,
-            }}>
-            <MaterialCommunityIcons
-              name="check-bold"
-              size={15}
-              color={value ? COLORS.primary : COLORS.white}
-            />
-            <Text
-              style={{
-                color: value ? COLORS.primary : COLORS.white,
-                ...styles.badgeLabel,
-              }}>
-              Resolved
-            </Text>
-          </View>
-        )}
+            {bug.isActive ? (
+              <>Resolve</>
+            ) : (
+              <>
+                <MaterialCommunityIcons
+                  name="check-bold"
+                  size={15}
+                  color={value ? COLORS.black : COLORS.black}
+                />{' '}
+                Resolved
+              </>
+            )}
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -60,52 +67,33 @@ const Bug = (props: any) => {
 
 const styles = StyleSheet.create({
   container: {
-    top: 10,
-    width: '90%',
+    width: '100%',
     borderWidth: 1,
     alignSelf: 'center',
     justifyContent: 'center',
     borderRadius: 15,
     height: 125,
-    borderColor: '#FFB37E',
+    borderColor: COLORS.white,
     marginTop: 20,
+    padding: 12,
   },
-  badge: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    borderRadius: 8,
-    height: 30,
-    alignItems: 'center',
-    right: 10,
-    width: 80,
-  },
-  badgeLabel: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-    borderRadius: 5,
-    left: 3,
-  },
-  fixToText: {
-    flexDirection: 'row',
-    paddingLeft: 10,
+  textFont: {
+    fontWeight: '500',
   },
   section: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    top: 10,
-    paddingLeft: 10,
+    alignItems: 'center',
+    paddingTop: 15,
   },
   button: {
     borderRadius: 8,
     height: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
-    right: 10,
-    width: 80,
+    flex: 0.5,
     borderColor: COLORS.white,
-
-    borderWidth: 1,
   },
   title: {
     fontSize: 20,
@@ -114,15 +102,21 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 13,
-    left: 5,
     fontWeight: '500',
     color: COLORS.black,
   },
   description: {
-    top: 5,
-    left: 5,
     fontSize: 12,
     color: COLORS.black,
+  },
+  titleContainer: {
+    flex: 0.5,
+    flexDirection: 'row',
+  },
+  descriptionContainer: {
+    flex: 0.7,
+    paddingRight: 20,
+    paddingLeft: 10,
   },
 });
 export default Bug;

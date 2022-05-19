@@ -1,9 +1,8 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import Bug from '../../components/bug/bug';
 
 const Home = () => {
-  let odd;
   const data = [
     {bugId: 'Bug#1234', description: 'Inactive type', isActive: true},
     {bugId: 'Bug#5678', description: 'Missing semicolon', isActive: false},
@@ -18,17 +17,15 @@ const Home = () => {
   ];
   return (
     <ScrollView>
-      <View style={{backgroundColor: '#ffff', height: '100%'}}>
+      <View style={style.view}>
         {data.map((bug, index) => {
-          if (index % 2 === 0) {
-            odd = false;
-          } else {
-            odd = true;
-          }
-          return <Bug key={index} value={odd} bug={bug} />;
+          return <Bug key={index} bug={bug} index={index} />;
         })}
       </View>
     </ScrollView>
   );
 };
+const style = StyleSheet.create({
+  view: {flex: 1, marginHorizontal: 20},
+});
 export default Home;

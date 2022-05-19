@@ -5,6 +5,7 @@ import Home from '../screens/home/home';
 import Profile from '../screens/profile/profile';
 import ResolvedBugs from '../screens/resolvedBugs/resolvedBugs';
 import UnresolvedBugs from '../screens/unresolvedBugs/unresolvedBugs';
+import {COLORS} from '../themes/colors';
 export const HomeStackNavigator = () => {
   const Stack = createNativeStackNavigator();
   return (
@@ -13,8 +14,9 @@ export const HomeStackNavigator = () => {
         name="Recent Bugs"
         component={Home}
         options={{
-          headerStyle: {backgroundColor: '#F9802D'},
-          headerTintColor: 'white',
+          headerStyle: {backgroundColor: COLORS.primary},
+          headerTintColor: COLORS.white,
+          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>
@@ -29,8 +31,9 @@ export const UnresolvedStackNavigator = () => {
         name="Unresolved Bugs"
         component={UnresolvedBugs}
         options={{
-          headerStyle: {backgroundColor: '#F9802D'},
-          headerTintColor: 'white',
+          headerStyle: {backgroundColor: COLORS.primary},
+          headerTintColor: COLORS.white,
+          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>
@@ -45,8 +48,9 @@ export const CreateStackNavigator = () => {
         name="Create Bug"
         component={CreateBug}
         options={{
-          headerStyle: {backgroundColor: '#F9802D'},
-          headerTintColor: 'white',
+          headerStyle: {backgroundColor: COLORS.primary},
+          headerTintColor: COLORS.white,
+          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>
@@ -61,8 +65,9 @@ export const ResolvedStackNavigator = () => {
         name="Resolved Bugs"
         component={ResolvedBugs}
         options={{
-          headerStyle: {backgroundColor: '#F9802D'},
-          headerTintColor: 'white',
+          headerStyle: {backgroundColor: COLORS.primary},
+          headerTintColor: COLORS.white,
+          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>
@@ -77,8 +82,9 @@ export const ProfileStackNavigator = () => {
         name="Profile"
         component={Profile}
         options={{
-          headerStyle: {backgroundColor: '#F9802D'},
-          headerTintColor: 'white',
+          headerStyle: {backgroundColor: COLORS.primary},
+          headerTintColor: COLORS.white,
+          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>

@@ -18,7 +18,7 @@ const TabNavigation = () => {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({route}) => ({
-          tabBarIcon: () => {
+          tabBarIcon: ({focused}) => {
             let iconName;
             if (route.name === 'Home') {
               iconName = 'home-outline';
@@ -35,12 +35,12 @@ const TabNavigation = () => {
               <MaterialCommunityIcons
                 name={iconName}
                 size={25}
-                color={COLORS.white}
+                color={focused ? COLORS.primary : COLORS.tabBarIcon}
               />
             );
           },
         })}>
-        <Tab.Group screenOptions={{tabBarColor: COLORS.primary}}>
+        <Tab.Group screenOptions={{tabBarColor: COLORS.white}}>
           <Tab.Screen name="Home" component={HomeStackNavigator} />
           <Tab.Screen name="Unresolved" component={UnresolvedStackNavigator} />
           <Tab.Screen name="Create" component={CreateStackNavigator} />
