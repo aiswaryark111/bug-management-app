@@ -1,12 +1,12 @@
 import React from 'react';
-import Navigation from './navigation-bottom-tab';
+import TabNavigation from './navigation-bottom-tab';
 import {Provider as PaperProvider} from 'react-native-paper';
+import Login from '../screens/Login/login';
 
 const Router = () => {
+  const isLoggedIn = true;
   return (
-    <PaperProvider>
-      <Navigation />
-    </PaperProvider>
+    <PaperProvider>{isLoggedIn ? <Login /> : <TabNavigation />}</PaperProvider>
   );
 };
 export default Router;

@@ -1,22 +1,24 @@
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import Home from '../screens/home/home';
-import Profile from '../screens/profile/profile';
-import ResolvedBugs from '../screens/resolvedBugs/resolvedBugs';
-import UnresolvedBugs from '../screens/unresolvedBugs/unresolvedBugs';
 import React from 'react';
-import CreateBug from '../screens/createBugs/createBugs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {COLORS} from '../themes/colors';
+import {
+  CreateStackNavigator,
+  HomeStackNavigator,
+  ProfileStackNavigator,
+  ResolvedStackNavigator,
+  UnresolvedStackNavigator,
+} from './stack-navigator';
 
 const Tab = createMaterialBottomTabNavigator();
 
-const Navigation = () => {
+const TabNavigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({route}) => ({
-          tabBarIcon: () => {
+          tabBarIcon: ({focused}) => {
             let iconName;
             if (route.name === 'Home') {
               iconName = 'home-outline';
@@ -33,38 +35,20 @@ const Navigation = () => {
               <MaterialCommunityIcons
                 name={iconName}
                 size={25}
-                color={COLORS.primary}
+                color={focused ? COLORS.primary : COLORS.tabBarIcon}
               />
             );
           },
         })}>
-        <Tab.Screen
-          name="Home"
-          component={Home}
-          options={{tabBarColor: COLORS.tabColor1}}
-        />
-        <Tab.Screen
-          name="Unresolved"
-          component={UnresolvedBugs}
-          options={{tabBarColor: COLORS.tabColor2}}
-        />
-        <Tab.Screen
-          name="Create"
-          component={CreateBug}
-          options={{tabBarColor: COLORS.tabColor3}}
-        />
-        <Tab.Screen
-          name="Resolved"
-          component={ResolvedBugs}
-          options={{tabBarColor: COLORS.tabColor4}}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{tabBarColor: COLORS.tabColor5}}
-        />
+        <Tab.Group screenOptions={{tabBarColor: COLORS.white}}>
+          <Tab.Screen name="Home" component={HomeStackNavigator} />
+          <Tab.Screen name="Unresolved" component={UnresolvedStackNavigator} />
+          <Tab.Screen name="Create" component={CreateStackNavigator} />
+          <Tab.Screen name="Resolved" component={ResolvedStackNavigator} />
+          <Tab.Screen name="Account" component={ProfileStackNavigator} />
+        </Tab.Group>
       </Tab.Navigator>
     </NavigationContainer>
   );
 };
-export default Navigation;
+export default TabNavigation;
