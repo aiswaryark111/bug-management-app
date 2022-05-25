@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -8,9 +8,25 @@ import {
 } from 'react-native';
 import {TextInput} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useDispatch} from 'react-redux';
+import {login} from '../../store/entity/user';
 import {COLORS} from '../../themes/colors';
 
 const Login = () => {
+  const dispatch = useDispatch();
+
+  const [inputs, setInputs] = useState({
+    userName: '',
+    password: '',
+  });
+
+  const onHandleChange = (value: string, input: string) => {
+    setInputs(prevState => ({...prevState, [input]: value}));
+  };
+
+  const onClick = () => {
+    dispatch(login(inputs));
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -30,18 +46,22 @@ const Login = () => {
           style={styles.textInput}
           label="Email"
           mode="outlined"
+          value={inputs.userName}
           theme={{roundness: 20}}
           activeOutlineColor={COLORS.primary}
+          onChangeText={input => onHandleChange(input, 'userName')}
         />
         <TextInput
           style={styles.textInput}
           label="Password"
           mode="outlined"
+          value={inputs.password}
           secureTextEntry={true}
           theme={{roundness: 20}}
           activeOutlineColor={COLORS.primary}
+          onChangeText={input => onHandleChange(input, 'password')}
         />
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity style={styles.loginBtn} onPress={() => onClick()}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
         <View style={styles.subContainer}>
