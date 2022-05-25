@@ -5,4 +5,5 @@ export const COLORS = {
   color1: '#DAEDF7',
   color2: '#DAF5F7',
   tabBarIcon: '#C6C8CA',
+  empty: '#A9AEB0',
 };

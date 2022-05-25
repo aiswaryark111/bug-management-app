@@ -4,7 +4,7 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import Login from '../screens/Login/login';
 
 const Router = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   return (
     <PaperProvider>{isLoggedIn ? <Login /> : <TabNavigation />}</PaperProvider>
   );
