@@ -1,8 +1,12 @@
 import React from 'react';
+// import {Text, TouchableOpacity, View} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {logout} from '../../store/entity/user';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from '../../themes/colors';
 
 const Profile = () => {
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
@@ -16,7 +20,9 @@ const Profile = () => {
         </View>
       </View>
       <View style={styles.logoutContainer}>
-        <TouchableOpacity style={styles.logoutBtn}>
+        <TouchableOpacity
+          style={styles.logoutBtn}
+          onPress={() => dispatch(logout())}>
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </View>

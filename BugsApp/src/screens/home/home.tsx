@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import Bug from '../../components/bug/bug';
+import Bug from '../../components/bug/bugCard';
 
 const Home = () => {
   const data = [
