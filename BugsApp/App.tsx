@@ -1,10 +1,15 @@
 // import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
+import {Provider} from 'react-redux';
 import Router from './src/routes/router';
-// import Router from './src/routes/router';
+import {store} from './src/store/store';
 
 const App = () => {
-  return <Router />;
+  return (
+    <Provider store={store}>
+      <Router />
+    </Provider>
+  );
 };
 
 export default App;
