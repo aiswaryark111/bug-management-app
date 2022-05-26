@@ -1,5 +1,4 @@
 import React from 'react';
-// import {Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {logout} from '../../store/entity/user';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
