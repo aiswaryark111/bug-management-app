@@ -8,7 +8,7 @@ const bugSlice = createSlice({
   reducers: {
     createBug: (bug: Bug[], action) => {
       bug.push({
-        id: action.payload.bugId,
+        id: Math.floor(Math.random() * 1000),
         title: action.payload.title,
         description: action.payload.description,
         status: STATUS.new,
