@@ -1,19 +1,29 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {useSelector} from 'react-redux';
+import Bug from '../../components/bug/bugCard';
 import EmptyScreen from '../../components/bug/empty-screen';
+import {resolvedBugSelector} from '../../store/entity/bugs';
 
 const ResolvedBugs = () => {
-  const empty = true;
+  const resolved = useSelector(resolvedBugSelector);
+
   return (
-    <View style={styles.container}>
-      {empty ? (
-        <EmptyScreen />
+    <>
+      {resolved.length ? (
+        <ScrollView>
+          <View style={styles.container}>
+            {resolved.map((bug: any, index: any) => {
+              return <Bug key={index} index={index} bug={bug} />;
+            })}
+          </View>
+        </ScrollView>
       ) : (
         <>
-          <Text>Resolved bugs!</Text>
+          <EmptyScreen />
         </>
       )}
-    </View>
+    </>
   );
 };
 
@@ -22,5 +32,7 @@ export default ResolvedBugs;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 20,
+    marginVertical: 20,
   },
 });
