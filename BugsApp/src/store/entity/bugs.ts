@@ -40,12 +40,18 @@ export const bugSelector = createSelector(
 
 export const resolvedBugSelector = createSelector(
   (state: any) => state,
-  state => state.bugReducer.filter((bug: Bug) => bug.resolved === true),
+  state =>
+    state.bugReducer
+      .filter((bug: Bug) => bug.resolved === true)
+      .sort((a: Bug, b: Bug) => (a.modifiedOn > b.modifiedOn ? -1 : 1)),
 );
 
 export const unResolvedBugSelector = createSelector(
   (state: any) => state,
-  state => state.bugReducer.filter((bug: Bug) => bug.resolved === false),
+  state =>
+    state.bugReducer
+      .filter((bug: Bug) => bug.resolved === false)
+      .sort((a: Bug, b: Bug) => (a.modifiedOn > b.modifiedOn ? -1 : 1)),
 );
 
 export const recentBugsSelector = createSelector(
