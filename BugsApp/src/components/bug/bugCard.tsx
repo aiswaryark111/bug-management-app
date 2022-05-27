@@ -1,10 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useDispatch} from 'react-redux';
+import {resolveBug} from '../../store/entity/bugs';
 import {COLORS} from '../../themes/colors';
 const Bug = (props: any) => {
   const {index, bug} = props;
   const [value, setValue] = useState(false);
+  const dispatch = useDispatch();
+  const onClick = () => {
+    dispatch(resolveBug({bugId: bug.id}));
+  };
 
   const checkOdd = () => {
     if (index % 2 === 0) {
@@ -26,7 +32,9 @@ const Bug = (props: any) => {
       }}>
       <View style={styles.titleContainer}>
         <MaterialCommunityIcons name="bug" size={30} color={COLORS.black} />
-        <Text style={styles.title}>{bug.bugId}</Text>
+        <Text style={styles.title}>
+          {bug.title} - #{bug.id}
+        </Text>
       </View>
       <View style={styles.section}>
         <View style={styles.descriptionContainer}>
@@ -37,16 +45,17 @@ const Bug = (props: any) => {
         <TouchableOpacity
           style={{
             ...styles.button,
-            backgroundColor: bug.isActive ? COLORS.primary : COLORS.white,
-            opacity: bug.isActive ? 1 : 0.5,
+            backgroundColor: !bug.resolved ? COLORS.primary : COLORS.white,
+            opacity: !bug.resolved ? 1 : 0.5,
           }}
-          disabled={!bug.isActive}>
+          disabled={bug.resolved}
+          onPress={onClick}>
           <Text
             style={{
               ...styles.textFont,
-              color: bug.isActive ? COLORS.white : COLORS.black,
+              color: !bug.resolved ? COLORS.white : COLORS.black,
             }}>
-            {bug.isActive ? (
+            {!bug.resolved ? (
               <>Resolve</>
             ) : (
               <>
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     height: 125,
     borderColor: COLORS.white,
-    marginTop: 20,
+    marginVertical: 12,
     padding: 12,
   },
   textFont: {

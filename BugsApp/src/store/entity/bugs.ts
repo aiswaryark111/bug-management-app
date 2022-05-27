@@ -53,6 +53,7 @@ export const recentBugsSelector = createSelector(
   state =>
     state.bugReducer
       .filter((bug: Bug) => (Date.now() - bug.modifiedOn) / TIME.hour <= 24)
+      .sort((a: Bug, b: Bug) => (a.modifiedOn > b.modifiedOn ? -1 : 1))
       .slice(0, 5),
 );
 

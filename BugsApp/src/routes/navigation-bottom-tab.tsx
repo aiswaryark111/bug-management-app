@@ -35,12 +35,12 @@ const TabNavigation = () => {
               <MaterialCommunityIcons
                 name={iconName}
                 size={25}
-                color={focused ? COLORS.primary : COLORS.tabBarIcon}
+                color={focused ? COLORS.white : COLORS.tabBarIcon}
               />
             );
           },
         })}>
-        <Tab.Group screenOptions={{tabBarColor: COLORS.white}}>
+        <Tab.Group screenOptions={{tabBarColor: COLORS.primary}}>
           <Tab.Screen name="Home" component={HomeStackNavigator} />
           <Tab.Screen name="Unresolved" component={UnresolvedStackNavigator} />
           <Tab.Screen name="Create" component={CreateStackNavigator} />
