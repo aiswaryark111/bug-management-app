@@ -1,3 +1,4 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {
   ScrollView,
@@ -9,10 +10,12 @@ import {
 import {TextInput} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch} from 'react-redux';
+import {RootStackParamList} from '../../models/routeParamsList';
 import {login} from '../../store/entity/user';
 import {COLORS} from '../../themes/colors';
 
-const Login = () => {
+type props = NativeStackScreenProps<RootStackParamList, 'SignUp'>;
+const Login = ({navigation}: props) => {
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
@@ -66,7 +69,7 @@ const Login = () => {
         </TouchableOpacity>
         <View style={styles.subContainer}>
           <Text style={styles.text}>Not a member ? </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
             <Text style={styles.signUpBtn}>Sign Up</Text>
           </TouchableOpacity>
         </View>

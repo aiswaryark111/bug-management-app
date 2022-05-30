@@ -1,13 +1,37 @@
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import CreateBug from '../screens/createBugs/createBugs';
 import Home from '../screens/home/home';
+import Login from '../screens/Login/login';
 import Profile from '../screens/profile/profile';
 import ResolvedBugs from '../screens/resolvedBugs/resolvedBugs';
+import SignUp from '../screens/signUp/signUp';
 import UnresolvedBugs from '../screens/unresolvedBugs/unresolvedBugs';
 import {COLORS} from '../themes/colors';
+
+const Stack = createNativeStackNavigator();
+
+export const StackNavigation = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
 export const HomeStackNavigator = () => {
-  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -24,7 +48,6 @@ export const HomeStackNavigator = () => {
 };
 
 export const UnresolvedStackNavigator = () => {
-  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -41,7 +64,6 @@ export const UnresolvedStackNavigator = () => {
 };
 
 export const CreateStackNavigator = () => {
-  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -58,7 +80,6 @@ export const CreateStackNavigator = () => {
 };
 
 export const ResolvedStackNavigator = () => {
-  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -75,7 +96,6 @@ export const ResolvedStackNavigator = () => {
 };
 
 export const ProfileStackNavigator = () => {
-  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator>
       <Stack.Screen
